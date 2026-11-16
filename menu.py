@@ -1,3 +1,14 @@
+def cadastrar_livro():
+    print("=====CADASTRAR LIVRO=====\n")
+
+    nome=input("Digite o nome do livro: ")
+    autor=input("Digite o nome do autor: ")
+
+    with open("livros.txt","a") as arquivos:
+        arquivos.write(nome+" - "+autor+ "\n")
+
+    print("Livro cadastrado com sucesso!")    
+
 def exibir_menu():
 
     opcao=0
@@ -13,13 +24,13 @@ def exibir_menu():
         opcao=int(input("Escolha uma opção: "))
 
         if opcao==1:
-            pass
+            cadastrar_livro()
         elif opcao==2:
-            pass
+            print("Consultar livro selecionado!")
         elif opcao==3:
-            pass
+            print("Atualizar livro selecionado!")
         elif opcao==4:
-            pass
+            print("Excluir livro selecionado!")
         elif opcao==5:
             print("Menu encerrado!!!")
         else:
