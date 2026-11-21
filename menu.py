@@ -9,6 +9,14 @@ def cadastrar_livro():
 
     print("Livro cadastrado com sucesso!")    
 
+def consultar_livros():
+    print("=====LIVROS CADASTRADOS=====\n")
+
+    with open("livros.txt","r") as arquivos:
+        conteudo=arquivos.read()
+
+    print(conteudo)
+
 def exibir_menu():
 
     opcao=0
@@ -26,7 +34,7 @@ def exibir_menu():
         if opcao==1:
             cadastrar_livro()
         elif opcao==2:
-            print("Consultar livro selecionado!")
+            consultar_livros()
         elif opcao==3:
             print("Atualizar livro selecionado!")
         elif opcao==4:
