@@ -17,6 +17,38 @@ def consultar_livros():
 
     print(conteudo)
 
+def atualizar_livro():
+    with open("livros.txt","r") as arquivos:
+        conteudo=arquivos.read()
+        livros=conteudo.splitlines()
+        
+    print(livros)
+    livro_antigo=input("Digite o nome e autor do livro que deseja atualizar: ")
+
+    encontrado=False
+    for i in range(len(livros)):
+        if livros[i]==livro_antigo:
+            print("Livro encontrado!\n")
+            encontrado=True
+            print("Podemos atualizar o livro!")
+
+            novo_nome=input("Digite o novo nome do livro: ")
+            novo_autor=input("Digite o novo nome do autor do livro: ") 
+            livros[i]=novo_nome + " - " + novo_autor
+        
+    if encontrado:
+        with open("livros.txt","w") as arquivos:
+            for livro in livros:
+                arquivos.write(livro + "\n")
+        
+        print("Livro atualizado com sucesso!")
+        
+    else:
+        print("Livro não encontrado!")
+
+def excluir_livro():
+    pass
+
 def exibir_menu():
 
     opcao=0
@@ -36,7 +68,7 @@ def exibir_menu():
         elif opcao==2:
             consultar_livros()
         elif opcao==3:
-            print("Atualizar livro selecionado!")
+            atualizar_livro()
         elif opcao==4:
             print("Excluir livro selecionado!")
         elif opcao==5:
