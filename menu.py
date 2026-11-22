@@ -38,35 +38,38 @@ def atualizar_livro():
             for i in range(len(livros)):
                 print(f"{i+1}. {livros[i]}")
         
-        livro_antigo=input("Digite o nome e autor do livro que deseja atualizar: ")
+        while True:
+            try:
+                opcao=int(input("\nDigite o número do livro que deseja atualizar: "))
+
+                if opcao<1 or opcao> len(livros):
+                    print("Número de livro inválido! Tente novamente.")
+                else:
+                    break
+
+            except ValueError:
+                print("Digite apenas números!")
     except FileNotFoundError:
         print("Arquivo não encontrado!")
         return
     
-    encontrado=False
-    for i in range(len(livros)):
-        if livros[i]==livro_antigo:
-            print("Livro encontrado!\n")
-            encontrado=True
-            print("Podemos atualizar o livro!")
-
-            novo_nome=input("Digite o novo nome do livro: ")
-            novo_autor=input("Digite o novo nome do autor do livro: ") 
-            livros[i]=novo_nome + " - " + novo_autor
-            break
+    indice=opcao-1
+    print(f"\nLivro encontrado: {livros[indice]}")
+    print("Podemos atualizar o livro!")
+    
+    novo_nome=input("Digite o novo nome do livro: ")
+    novo_autor=input("Digite o novo nome do autor do livro: ")
         
-    if encontrado:
-        if novo_nome=="" or novo_autor=="":
-            print("Nome ou autor vazio ao atualizar livro. Tente novamente!")    
-        else:
-            with open("livros.txt","w") as arquivos:
-                for livro in livros:
-                    arquivos.write(livro + "\n")
+    
+    if novo_nome=="" or novo_autor=="":
+        print("Nome ou autor vazio ao atualizar livro. Tente novamente!")    
+    else:
+        livros[indice]=novo_nome+" - "+novo_autor
+        with open("livros.txt","w") as arquivos:
+            for livro in livros:
+                arquivos.write(livro + "\n")
         
             print("Livro atualizado com sucesso!")
-        
-    else:
-        print("Livro não encontrado!")
 
 def excluir_livro():
     try:
