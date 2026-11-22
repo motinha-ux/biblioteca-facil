@@ -3,11 +3,14 @@ def cadastrar_livro():
 
     nome=input("Digite o nome do livro: ")
     autor=input("Digite o nome do autor: ")
+    
+    if nome=="" or autor=="":
+        print("Nome ou autor vazio ao cadastrar livro. Tente novamente!")
+    else:
+        with open("livros.txt","a") as arquivos:
+          arquivos.write(nome+" - "+autor+ "\n")
 
-    with open("livros.txt","a") as arquivos:
-        arquivos.write(nome+" - "+autor+ "\n")
-
-    print("Livro cadastrado com sucesso!")    
+        print("Livro cadastrado com sucesso!")    
 
 def consultar_livros():
     print("=====LIVROS CADASTRADOS=====\n")
