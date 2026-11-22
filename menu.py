@@ -18,11 +18,13 @@ def consultar_livros():
     try:
         with open("livros.txt","r") as arquivos:
             conteudo=arquivos.read()
+            livros=conteudo.splitlines()
 
         if conteudo=="":
             print("Nenhum livro cadastrado!")
         else:
-            print(conteudo)
+            for i in range(len(livros)):
+                print(f"{i+1}. {livros[i]}")
 
     except FileNotFoundError:
         print("Arquivo não encontrado!")    
@@ -33,7 +35,9 @@ def atualizar_livro():
             conteudo=arquivos.read()
             livros=conteudo.splitlines()
         
-        print(livros)
+            for i in range(len(livros)):
+                print(f"{i+1}. {livros[i]}")
+        
         livro_antigo=input("Digite o nome e autor do livro que deseja atualizar: ")
     except FileNotFoundError:
         print("Arquivo não encontrado!")
@@ -72,8 +76,9 @@ def excluir_livro():
           livros=conteudo.splitlines()
 
         print("=====LIVROS CADASTRADOS=====")
-        for livro in livros:     
-           print(livro)
+        for i in range(len(livros)):
+            print(f"{i+1}. {livros[i]}")
+    
     except FileNotFoundError:
         print("Arquivo não encontrado!")
         return
@@ -93,7 +98,7 @@ def excluir_livro():
             for livro in livros:
                 arquivos.write(livro + "\n")
 
-        print("Livro excluido da lista!")
+        print("Livro excluido com sucesso!")
     else: 
         print("Livro não encontrado")
 
