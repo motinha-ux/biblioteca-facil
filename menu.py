@@ -99,7 +99,11 @@ def exibir_menu():
         print("4 - Excluir livro")
         print("5 - Sair \n")
 
-        opcao=int(input("Escolha uma opção: "))
+        try:
+            opcao=int(input("Escolha uma opção: "))
+        except ValueError:
+            print("Digite apenas números na opção!!!")
+            continue
 
         if opcao==1:
             cadastrar_livro()
