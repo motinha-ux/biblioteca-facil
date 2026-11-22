@@ -47,8 +47,35 @@ def atualizar_livro():
         print("Livro não encontrado!")
 
 def excluir_livro():
-    pass
+    print("=====EXCLUIR LIVRO=====")
+    with open("livros.txt","r") as arquivos:
+        conteudo=arquivos.read()
+        livros=conteudo.splitlines()
 
+    print("=====LIVROS CADASTRADOS=====")
+    for livro in livros:     
+        print(livro)
+
+    livro_excluir=input("Digite o nome e autor do livro que deseja excluir: ")
+
+    encontrado=False
+    for i in range(len(livros)):
+        if livros[i]==livro_excluir:
+            print("Livro encontrado!\n")
+            encontrado=True
+            del livros[i]
+            break
+    print(livros)
+
+    if encontrado:
+        with open("livros.txt","w")as arquivos:
+            for livro in livros:
+                arquivos.write(livro + "\n")
+
+        print("Livro excluido da lista!")
+    else: 
+        print("Livro não encontrado")
+        
 def exibir_menu():
 
     opcao=0
@@ -70,7 +97,7 @@ def exibir_menu():
         elif opcao==3:
             atualizar_livro()
         elif opcao==4:
-            print("Excluir livro selecionado!")
+            excluir_livro()
         elif opcao==5:
             print("Menu encerrado!!!")
         else:
