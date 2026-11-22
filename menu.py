@@ -48,11 +48,14 @@ def atualizar_livro():
             break
         
     if encontrado:
-        with open("livros.txt","w") as arquivos:
-            for livro in livros:
-                arquivos.write(livro + "\n")
+        if novo_nome=="" or novo_autor=="":
+            print("Nome ou autor vazio ao atualizar livro. Tente novamente!")    
+        else:
+            with open("livros.txt","w") as arquivos:
+                for livro in livros:
+                    arquivos.write(livro + "\n")
         
-        print("Livro atualizado com sucesso!")
+            print("Livro atualizado com sucesso!")
         
     else:
         print("Livro não encontrado!")
