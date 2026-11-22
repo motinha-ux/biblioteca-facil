@@ -77,6 +77,9 @@ def excluir_livro():
         with open("livros.txt","r") as arquivos:
           conteudo=arquivos.read()
           livros=conteudo.splitlines()
+          if conteudo == "":
+              print("Nenhum livro cadastrado!")
+              return
 
         print("=====LIVROS CADASTRADOS=====")
         for i in range(len(livros)):
@@ -86,24 +89,25 @@ def excluir_livro():
         print("Arquivo não encontrado!")
         return
     
-    livro_excluir=input("Digite o nome e autor do livro que deseja excluir: ")
+    while True:
+        try:
+            opcao=int(input("\nDigite o número do livro que deseja excluir: "))
 
-    encontrado=False
-    for i in range(len(livros)):
-        if livros[i]==livro_excluir:
-            print("Livro encontrado!\n")
-            encontrado=True
-            del livros[i]
-            break
+            if opcao<1 or opcao>len(livros):
+                print("Número de livro inválido! Tente novamente.")
+            else:
+                break
 
-    if encontrado:
-        with open("livros.txt","w")as arquivos:
-            for livro in livros:
-                arquivos.write(livro + "\n")
+        except ValueError:
+            print("Digite apenas números!")    
+    
+    indice=opcao-1
+    del livros[indice]
+    with open("livros.txt","w")as arquivos:
+        for livro in livros:
+            arquivos.write(livro + "\n")
 
-        print("Livro excluido com sucesso!")
-    else: 
-        print("Livro não encontrado")
+    print("Livro excluido com sucesso!")
 
 def exibir_menu():
 
