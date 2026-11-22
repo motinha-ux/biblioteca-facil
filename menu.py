@@ -35,6 +35,7 @@ def atualizar_livro():
             novo_nome=input("Digite o novo nome do livro: ")
             novo_autor=input("Digite o novo nome do autor do livro: ") 
             livros[i]=novo_nome + " - " + novo_autor
+            break
         
     if encontrado:
         with open("livros.txt","w") as arquivos:
@@ -75,7 +76,7 @@ def excluir_livro():
         print("Livro excluido da lista!")
     else: 
         print("Livro não encontrado")
-        
+
 def exibir_menu():
 
     opcao=0
