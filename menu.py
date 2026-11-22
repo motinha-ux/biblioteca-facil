@@ -12,10 +12,17 @@ def cadastrar_livro():
 def consultar_livros():
     print("=====LIVROS CADASTRADOS=====\n")
 
-    with open("livros.txt","r") as arquivos:
-        conteudo=arquivos.read()
+    try:
+        with open("livros.txt","r") as arquivos:
+            conteudo=arquivos.read()
 
-    print(conteudo)
+        if conteudo=="":
+            print("Nenhum livro cadastrado!")
+        else:
+            print(conteudo)
+
+    except FileNotFoundError:
+        print("Arquivo não encontrado!")    
 
 def atualizar_livro():
     with open("livros.txt","r") as arquivos:
