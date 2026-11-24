@@ -34,6 +34,9 @@ def atualizar_livro():
         with open("livros.txt","r") as arquivos:
             conteudo=arquivos.read()
             livros=conteudo.splitlines()
+            if conteudo=="":
+                print("Nenhum livro cadastrado!")
+                return
         
             for i in range(len(livros)):
                 print(f"{i+1}. {livros[i]}")
@@ -60,7 +63,6 @@ def atualizar_livro():
     novo_nome=input("Digite o novo nome do livro: ")
     novo_autor=input("Digite o novo nome do autor do livro: ")
         
-    
     if novo_nome=="" or novo_autor=="":
         print("Nome ou autor vazio ao atualizar livro. Tente novamente!")    
     else:
@@ -69,7 +71,7 @@ def atualizar_livro():
             for livro in livros:
                 arquivos.write(livro + "\n")
         
-            print("Livro atualizado com sucesso!")
+        print("Livro atualizado com sucesso!")
 
 def excluir_livro():
     try:
